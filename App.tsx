@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { RecoilRoot } from "recoil";
+import MainNavigator from "./lib/navigation/navigator";
+import Toast from "react-native-toast-message";
+import { NavigationContainer } from "@react-navigation/native";
+import { navigationRef } from "./lib/navigation/navigation";
+import NotificationHandler from "./lib/components/NotificationHandler";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <RecoilRoot>
+            <NotificationHandler />
+            <NavigationContainer ref={navigationRef}>
+                <MainNavigator/>
+                <Toast/>
+            </NavigationContainer>
+        </RecoilRoot>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
